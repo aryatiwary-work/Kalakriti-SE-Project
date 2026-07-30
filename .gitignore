@@ -1,0 +1,124 @@
+# =====================================================
+# Kalakriti - .gitignore
+# React (Vite) + FastAPI + PostgreSQL + Docker
+# =====================================================
+
+############################
+# OS Files
+############################
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+############################
+# Python
+############################
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+
+############################
+# Python Virtual Environments
+############################
+venv/
+.venv/
+env/
+ENV/
+
+############################
+# Python Tooling
+############################
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+
+############################
+# Environment Variables
+############################
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Keep sample environment files
+!.env.example
+
+############################
+# Database
+############################
+*.db
+*.sqlite3
+postgres-data/
+pgdata/
+
+############################
+# Node / React / Vite
+############################
+node_modules/
+dist/
+build/
+.vite/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+############################
+# IDEs
+############################
+.vscode/
+.idea/
+*.iml
+
+############################
+# Docker
+############################
+docker-compose.override.yml
+
+############################
+# Logs
+############################
+logs/
+*.log
+
+############################
+# Coverage Reports
+############################
+coverage/
+
+############################
+# Temporary Files
+############################
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+############################
+# Uploads / Media
+############################
+uploads/
+media/
+
+############################
+# Build Artifacts
+############################
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+############################
+# Miscellaneous
+############################
+.cache/
