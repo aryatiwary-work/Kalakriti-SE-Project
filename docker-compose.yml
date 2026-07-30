@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: kalakriti_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: kalakriti_user
+      POSTGRES_PASSWORD: kalakriti_pass
+      POSTGRES_DB: kalakriti_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - kalakriti_pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: kalakriti_backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env.example
+    environment:
+      DATABASE_URL: postgresql://kalakriti_user:kalakriti_pass@db:5432/kalakriti_db
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build: ./frontend
+    container_name: kalakriti_frontend
+    restart: unless-stopped
+    environment:
+      VITE_API_URL: http://localhost:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  kalakriti_pgdata:

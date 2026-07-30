@@ -2,67 +2,163 @@
 
 ## Overview
 
-Kalakriti (from *kala* - art/craft, and *kriti* - creation) is a location-based platform where anyone teaching a hands-on skill, pottery, painting, dance, music, yoga, cooking, calligraphy, woodworking, whatever it is, can list a workshop, and anyone looking to learn something new can discover what's happening near them, see the details upfront, and book a seat.
+Kalakriti (from *kala* - art/craft, and *kriti* - creation) is a location-based platform where anyone teaching a hands-on skill — pottery, painting, dance, music, yoga, cooking, calligraphy, woodworking, whatever it is — can list a workshop, and anyone looking to learn something new can discover what's happening near them, see the details upfront, and book a seat.
 
-Right now, if you want to find out what workshops are running in your city this weekend, there's no single place to look. You end up piecing it together from Instagram stories, WhatsApp groups, word of mouth, or a random Google search that turns up one artisan's personal page with half the details missing. Kalakriti is meant to be the one place you check, pick your city or area, browse what's on, see how many seats are left, and register.
+Right now, if you want to find out what workshops are running in your city this weekend, there's no single place to look. You end up piecing it together from Instagram stories, WhatsApp groups, word of mouth, or a random Google search that turns up one artisan's personal page with half the details missing. Kalakriti is meant to be the one place you check: pick your city or area, browse what's on, see how many seats are left, and register.
 
 ## Problem It Solves
 
-* **For learners:** Finding a workshop today means scattered discovery, no way to compare what's happening nearby, on what date, at what price, with how many spots open. People miss out on sessions simply because they never heard about them in time.
-* **For hosts (artisans, instructors, hobbyist teachers):** Most independent teachers don't have the time or technical skill to build a booking system. They manage registrations through DMs and phone calls, which breaks down fast once a session starts filling up, no waitlist, no easy way to close registration at capacity, no record of who's confirmed.
-* **The actual gap:** There's no platform, in India or globally, that treats "local skill workshops" as its own category the way food delivery or event ticketing apps treat theirs. Kalakriti fills that specific gap.
+**For learners:** Finding a workshop today means scattered discovery, no way to compare what's happening nearby, on what date, at what price, with how many spots open. People miss out on sessions simply because they never heard about them in time.
+
+**For hosts (artisans, instructors, hobbyist teachers):** Most independent teachers don't have the time or technical skill to build a booking system. They manage registrations through DMs and phone calls, which breaks down fast once a session starts filling up — no waitlist, no easy way to close registration at capacity, no record of who's confirmed.
+
+**The actual gap:** There's no platform, in India or globally, that treats "local skill workshops" as its own category the way food delivery or event ticketing apps treat theirs. Kalakriti fills that specific gap.
 
 ## Target Users (Personas)
 
-**1. Meera - the Workshop Host**
-
-Runs weekend pottery sessions out of a small studio. Has a steady group of regulars but struggles to fill new slots or manage a waitlist when a session goes viral on social media. Wants a simple way to list a session, set a capacity, and stop worrying about overbooking.
-
-**2. Arjun - the Curious Learner**
-
-A working professional who wants to pick up a new hobby but has no idea what's available in his area. Doesn't want to follow ten different Instagram pages hoping to catch an announcement. Wants to search by location and category and just see what's on.
-
-**3. Priya - the Occasional Traveler**
-
-Visiting a new city for a few days and wants to try a local experience, a regional cooking class or a craft session, instead of doing the usual tourist things. Needs to filter by date and location quickly since her window is short.
-
-**4. Admin/Platform Team (your own team, in this project's context)**
-
-Needs to verify new hosts, handle disputes (no-shows, cancellations), and keep the category list and location data clean as the platform grows.
+1. **Meera - the Workshop Host** — Runs weekend pottery sessions out of a small studio. Struggles to fill new slots or manage a waitlist when a session goes viral. Wants a simple way to list a session, set a capacity, and stop worrying about overbooking.
+2. **Arjun - the Curious Learner** — A working professional who wants to pick up a new hobby but has no idea what's available in his area. Wants to search by location and category and just see what's on.
+3. **Priya - the Occasional Traveler** — Visiting a new city for a few days and wants to try a local experience instead of the usual tourist things. Needs to filter by date and location quickly since her window is short.
+4. **Admin/Platform Team** — Verifies new hosts, handles disputes (no-shows, cancellations), and keeps the category list and location data clean as the platform grows.
 
 ## Vision Statement
 
-To become the default place anyone in India looks when they want to know: *"What can I learn near me this week?"*, making it as easy to discover and book a local workshop as it is to order food or book a movie ticket.
+To become the default place anyone in India looks when they want to know: "What can I learn near me this week?" — making it as easy to discover and book a local workshop as it is to order food or book a movie ticket.
 
 ## Key Features / Goals
 
-* **Location-based discovery:** Browse workshops by city/area, with filters for category (dance, pottery, music, yoga, cooking, painting, etc.), date, and price range.
-* **Host onboarding:** Hosts create a profile and list sessions with details, description, duration, skill level, price, and capacity.
-* **Capacity & waitlist management:** Once a session hits its seat limit, new registrants join a waitlist and are automatically offered a spot if someone cancels.
-* **Registration & confirmation flow:** Learners register for a session and receive confirmation. Hosts see a live list of confirmed attendees.
-* **Reviews & ratings:** After a session, attendees can rate and review, helping future learners choose confidently and helping good hosts stand out.
-* **Host dashboard:** A simple view for hosts to manage upcoming sessions, see registration numbers, and communicate updates.
-
-*(Later reviews will build on this, for example, smarter recommendations, host verification badges, or in-app messaging, but this is the core loop we're starting with.)*
+- **Location-based discovery:** Browse workshops by city/area, with filters for category, date, and price range.
+- **Host onboarding:** Hosts create a profile and list sessions with description, duration, skill level, price, and capacity.
+- **Capacity & waitlist management:** Once a session hits its seat limit, new registrants join a waitlist and are auto-offered a spot if someone cancels.
+- **Registration & confirmation flow:** Learners register and receive confirmation; hosts see a live list of confirmed attendees.
+- **Reviews & ratings:** Post-session ratings help future learners choose confidently.
+- **Host dashboard:** A simple view for hosts to manage upcoming sessions and registration numbers.
 
 ## Success Metrics
 
-* Number of workshops listed and successfully filled to capacity.
-* Percentage of sessions that use the waitlist feature (signals real demand outpacing supply).
-* Host retention, hosts who list more than one session after their first.
-* Learner return rate, users who book a second workshop through the platform.
-* Average time from search to registration (a proxy for how easy discovery actually is).
+- Number of workshops listed and successfully filled to capacity.
+- Percentage of sessions that use the waitlist feature.
+- Host retention (hosts who list more than one session).
+- Learner return rate.
+- Average time from search to registration.
 
 ## Assumptions & Constraints
 
-### Assumptions
+**Assumptions**
+- Hosts are willing to list session details upfront rather than negotiating case by case.
+- Learners are comfortable registering online and trust the platform enough to commit in advance.
+- Initial focus is a single city/region for the MVP.
 
-* Hosts are willing to list session details upfront (date, capacity, price) rather than negotiating case by case.
-* Learners are comfortable registering online and trust a platform enough to commit to a session in advance.
-* Initial focus is on a single city/region for the MVP, with location filtering built to scale to more cities later.
+**Constraints**
+- No in-app payment gateway for this phase (cash/UPI on arrival).
+- No real-time chat between host and learner in this version.
+- Built and deployed as a two-person team project within a semester timeline, so infrastructure is kept simple and cost-free.
 
-### Constraints
+---
 
-* No in-app payment gateway for this phase, registration confirms a seat, but payment is handled outside the app (cash/UPI on arrival) to keep MVP scope realistic.
-* No real-time chat between host and learner in this version, communication happens via basic contact details shared post-confirmation.
-* Built and deployed as a two-person team project within a semester timeline, so infrastructure choices (single-region deployment, containerized local setup) are kept simple and cost-free rather than production-scale.
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React (Vite) |
+| Backend | FastAPI (Python) |
+| Database | PostgreSQL |
+| Containerization | Docker & Docker Compose |
+| API Docs | Swagger UI (auto-generated by FastAPI at `/docs`) |
+
+## Repository Structure
+
+```
+Kalakriti-project-SE/
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── database.py
+│   │   ├── models.py
+│   │   ├── schemas.py
+│   │   └── routers/
+│   │       ├── workshops.py
+│   │       ├── hosts.py
+│   │       └── registrations.py
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── .env.example
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── package.json
+│   ├── Dockerfile
+│   └── .env.example
+├── docker-compose.yml
+├── .gitignore
+└── README.md
+```
+
+## Branching Strategy
+
+This project follows **GitHub Flow**:
+
+- `main` is always deployable/stable.
+- All new work happens on a short-lived feature branch, named `feature/<short-description>` (e.g. `feature/workshop-listing-api`, `feature/frontend-home-page`).
+- Commit early and often on the feature branch with clear messages.
+- Open a Pull Request into `main` when the feature is ready. PRs are reviewed before merging.
+- Once merged, the feature branch is deleted.
+- Bug fixes follow the same pattern using `fix/<short-description>`.
+
+Example of creating a feature branch:
+```bash
+git checkout -b feature/docker-setup
+git add .
+git commit -m "Add Docker setup for backend and frontend"
+git push -u origin feature/docker-setup
+```
+
+## Local Development Tools
+
+| Tool | Purpose |
+|---|---|
+| Docker Desktop | Runs backend, frontend, and PostgreSQL as containers |
+| VS Code | Primary code editor |
+| Postman / Swagger UI (`/docs`) | Testing backend API endpoints |
+| pgAdmin / TablePlus (optional) | Inspecting the PostgreSQL database |
+| GitHub Desktop / Git CLI | Version control |
+
+## Quick Start – Local Development
+
+**Prerequisites:** Docker Desktop installed and running.
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/<your-username>/Kalakriti-project-SE.git
+   cd Kalakriti-project-SE
+   ```
+
+2. Build and start all services:
+   ```bash
+   docker-compose up --build
+   ```
+
+3. Once the containers are up:
+   - Backend API: [http://localhost:8000](http://localhost:8000)
+   - Backend interactive docs (Swagger): [http://localhost:8000/docs](http://localhost:8000/docs)
+   - Frontend app: [http://localhost:5173](http://localhost:5173)
+
+4. To stop everything:
+   ```bash
+   docker-compose down
+   ```
+
+5. To rebuild after changing dependencies (`requirements.txt` / `package.json`):
+   ```bash
+   docker-compose up --build
+   ```
+
+## Proof of Setup (for submission)
+
+Screenshots included in this repo's `/docs` or issue/PR should show:
+- Terminal output of a successful `docker-compose up --build`.
+- The app running at `localhost:5173` in the browser, and `localhost:8000/docs` for the API.
+- The GitHub repository page showing branches (`main` + at least one `feature/*` branch) and this README rendered.
