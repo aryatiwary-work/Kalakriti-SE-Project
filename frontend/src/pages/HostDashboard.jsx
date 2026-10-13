@@ -92,9 +92,9 @@ export default function HostDashboard() {
               </div>
               <div className="host-row-actions">
                 <button className="btn btn-soft btn-sm" onClick={() => toggleAttendees(w.id)}>{open === w.id ? 'Hide' : 'View'} Registrations</button>
-                {w.status === 'active' && <Link className="btn btn-outline btn-sm" to={`/host/workshops/${w.id}/edit`}><Pencil size={13} /> Edit</Link>}
+                {w.status === 'active' && w.badge !== 'Completed' && <Link className="btn btn-outline btn-sm" to={`/host/workshops/${w.id}/edit`}><Pencil size={13} /> Edit</Link>}
                 <button className="btn btn-outline btn-sm" onClick={() => duplicate(w)}><Copy size={13} /> Duplicate</button>
-                {w.status === 'active' && <button className="btn btn-outline btn-sm danger" onClick={() => cancelWorkshop(w)}><XCircle size={13} /> Cancel</button>}
+                {w.status === 'active' && w.badge !== 'Completed' && <button className="btn btn-outline btn-sm danger" onClick={() => cancelWorkshop(w)}><XCircle size={13} /> Cancel</button>}
               </div>
             </div>
             {open === w.id && (

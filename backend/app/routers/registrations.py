@@ -107,6 +107,8 @@ def cancel_registration(
         raise HTTPException(status_code=400, detail="This registration is already cancelled")
 
     workshop = lock_workshop(db, registration.workshop_id)
+    if workshop.date_time <= now():
+        raise HTTPException(status_code=400, detail="This workshop has already taken place")
     registration.status = "cancelled"
     workshop.seats_filled = max(workshop.seats_filled - 1, 0)
 
@@ -180,6 +182,9 @@ def my_bookings(
                 workshop=workshop_out(entry.workshop),
             )
         )
+    # upcoming sessions first (soonest at the top), then past ones
+    at = now()
+    items.sort(key=lambda b: (b.workshop.date_time <= at, abs((b.workshop.date_time - at).total_seconds())))
     return items
 
 

@@ -184,3 +184,4 @@ label { display: flex; flex-direction: column; gap: .3rem; font-size: .85rem; fo
   .search-layout, .detail-grid { grid-template-columns: 1fr; }
   .hero-search { grid-template-columns: 1fr; }
 }
+p.meta { display: flex; margin: .15rem 0; }

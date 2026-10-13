@@ -2,9 +2,10 @@
 
 Each test pins a defect that was present in the DA-2 skeleton code (commit
 5ce6656 on main) and was fixed during Review 3 development. The suite runs on
-every push in CI so none of these defects can silently come back.
+every push in CI so none of these defects can silently come back. REG09 was
+found later, during manual testing of the Review 3 build itself.
 """
-from tests.conftest import future
+from tests.conftest import future, move_to_past
 
 
 def test_REG01_same_learner_cannot_book_twice(client, signup, make_workshop):
@@ -84,3 +85,15 @@ def test_REG08_email_login_is_case_insensitive(client):
     """Mixed-case signup emails could not log in with lower-case input."""
     client.post("/auth/signup", json={"name": "Priya", "email": "Priya@Travel.IN", "password": "12345678"})
     assert client.post("/auth/login", data={"username": "PRIYA@travel.in", "password": "12345678"}).status_code == 200
+
+
+def test_REG09_past_bookings_cannot_be_cancelled(client, signup, make_workshop):
+    """Found in manual testing: My Bookings let a learner cancel a session that had already run,
+    which decremented seats_filled on a completed workshop."""
+    _, host = signup("host")
+    w = make_workshop(host)
+    _, learner = signup("learner")
+    reg = client.post(f"/workshops/{w['id']}/register", headers=learner).json()["registration"]
+    move_to_past(w["id"])
+    assert client.post(f"/registrations/{reg['id']}/cancel", headers=learner).status_code == 400
+    assert client.get(f"/workshops/{w['id']}").json()["seats_filled"] == 1

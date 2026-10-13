@@ -5,6 +5,8 @@ import api, { errorMessage } from '../lib/api.js'
 import { formatDate, formatTime } from '../lib/format.js'
 import CategoryArt from '../components/CategoryArt.jsx'
 
+const past = (item) => new Date(item.workshop.date_time) <= new Date()
+
 export default function MyBookings() {
   const [items, setItems] = useState(null)
   const [message, setMessage] = useState(null)
@@ -58,9 +60,11 @@ export default function MyBookings() {
             <div className="booking-row-side">
               {item.kind === 'registration' ? (
                 <>
-                  <span className={`status-badge ${item.status}`}>{item.status === 'confirmed' ? 'Confirmed' : 'Cancelled'}</span>
+                  <span className={`status-badge ${past(item) && item.status === 'confirmed' ? 'completed' : item.status}`}>
+                    {item.status === 'cancelled' ? 'Cancelled' : past(item) ? 'Attended' : 'Confirmed'}
+                  </span>
                   <span className="meta"><Ticket size={14} /> {item.booking_ref}</span>
-                  {item.status === 'confirmed' && <button className="btn btn-outline btn-sm" onClick={() => cancel(item)}>Cancel booking</button>}
+                  {item.status === 'confirmed' && !past(item) && <button className="btn btn-outline btn-sm" onClick={() => cancel(item)}>Cancel booking</button>}
                 </>
               ) : (
                 <>

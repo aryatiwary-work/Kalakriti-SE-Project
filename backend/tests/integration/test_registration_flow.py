@@ -119,3 +119,4 @@ def test_concurrent_bookings_never_oversell_last_seat(client, signup, make_works
     assert statuses.count("confirmed") == 1
     assert statuses.count("waitlisted") == 7
     assert client.get(f"/workshops/{w['id']}").json()["seats_filled"] == 1
+
