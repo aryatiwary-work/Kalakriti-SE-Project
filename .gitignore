@@ -122,3 +122,12 @@ pip-wheel-metadata/
 # Miscellaneous
 ############################
 .cache/
+
+############################
+# Testing artefacts
+############################
+.mutmut-cache
+html/
+test_kalakriti.db
+test-results/
+playwright-report/
