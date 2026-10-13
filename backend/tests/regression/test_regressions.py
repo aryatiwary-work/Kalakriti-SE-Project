@@ -81,9 +81,12 @@ def test_REG07_cors_is_not_wildcard_with_credentials(client):
     assert ok.headers.get("access-control-allow-origin") == "http://localhost:5173"
 
 
-def test_REG08_email_login_is_case_insensitive(client):
-    """Mixed-case signup emails could not log in with lower-case input."""
+def test_REG08_emails_are_case_insensitive(client):
+    """Old POST /hosts/ compared emails case-sensitively, so Priya@Travel.IN and
+    priya@travel.in became two separate accounts. Emails are now normalised."""
     client.post("/auth/signup", json={"name": "Priya", "email": "Priya@Travel.IN", "password": "12345678"})
+    dup = client.post("/auth/signup", json={"name": "Priya 2", "email": "priya@travel.in", "password": "12345678"})
+    assert dup.status_code == 400
     assert client.post("/auth/login", data={"username": "PRIYA@travel.in", "password": "12345678"}).status_code == 200
 
 
