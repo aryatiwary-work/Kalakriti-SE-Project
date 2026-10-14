@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 test('landing page shows the hero, live stats, categories and FAQ', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByRole('heading', { name: /Learn a craft/ })).toBeVisible()
-  await expect(page.getByText('Upcoming workshops')).toBeVisible()
+  await expect(page.getByText('Upcoming workshops', { exact: true })).toBeVisible()
   await expect(page.getByRole('button', { name: /Pottery/ })).toBeVisible()
   const faq = page.locator('#faq details').first()
   await faq.locator('summary').click()
