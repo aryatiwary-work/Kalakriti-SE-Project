@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+// By default the website asks its own address for data (/api/...), and the
+// Vite server passes those requests on to the backend. That way the site also
+// works when it is opened from another device or through a shared link.
+export const API_URL = import.meta.env.VITE_API_URL || '/api'
 
 const api = axios.create({ baseURL: API_URL })
 
