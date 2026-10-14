@@ -262,6 +262,12 @@ git push -u origin feature/docker-setup
    docker-compose up --build
    ```
 
+6. To share the running site with someone else (a phone, another laptop), open a temporary public link with [cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/). On a Mac: `brew install cloudflared`. Then run:
+   ```bash
+   cloudflared tunnel --url http://localhost:5173
+   ```
+   It prints a link ending in `.trycloudflare.com`. Anyone can open it while this command and the containers are running. Press Ctrl+C to close the link.
+
 ## Proof of Setup (for submission)
 
 Screenshots included in this repo's `/docs` or issue/PR should show:
