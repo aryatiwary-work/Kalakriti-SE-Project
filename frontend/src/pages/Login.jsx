@@ -1,8 +1,16 @@
 import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { GraduationCap, Lock, Mail, Palette, User } from 'lucide-react'
+import { GraduationCap, Lock, Mail, Palette, Sparkles, User } from 'lucide-react'
+import Logo from '../components/Logo.jsx'
 import { useAuth } from '../lib/auth.jsx'
 import { errorMessage } from '../lib/api.js'
+
+// Accounts created by `python -m app.seed` for demonstrations
+const DEMO_PASSWORD = 'kalakriti123'
+const DEMOS = [
+  { email: 'arjun@example.com', label: 'Learner', who: 'Arjun Mehta', icon: GraduationCap },
+  { email: 'meera@claystudio.in', label: 'Host', who: 'Clay Studio', icon: Palette },
+]
 
 export default function Login() {
   const [params] = useSearchParams()
@@ -16,14 +24,16 @@ export default function Login() {
 
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value })
 
-  async function submit(e) {
-    e.preventDefault()
+  async function submit(e, demo) {
+    e?.preventDefault()
     setBusy(true)
     setError(null)
     try {
-      const user = mode === 'login'
-        ? await login(form.email, form.password)
-        : await signup({ ...form, role })
+      const user = demo
+        ? await login(demo, DEMO_PASSWORD)
+        : mode === 'login'
+          ? await login(form.email, form.password)
+          : await signup({ ...form, role })
       navigate(user.role === 'host' ? '/host' : '/workshops')
     } catch (err) {
       setError(errorMessage(err))
@@ -35,6 +45,7 @@ export default function Login() {
   return (
     <div className="auth-page">
       <form className="auth-card" onSubmit={submit}>
+        <span className="auth-logo"><Logo size={44} /></span>
         <h1 className="auth-brand">KALAKRITI</h1>
         <p className="muted center">Discover Local Workshops &amp; Skill Sessions Near You</p>
         <div className="tabs">
@@ -68,6 +79,18 @@ export default function Login() {
             {mode === 'login' ? 'Sign Up' : 'Log In'}
           </button>
         </p>
+        {mode === 'login' && (
+          <div className="demo-box">
+            <p className="small"><Sparkles size={14} /> <strong>Try the demo</strong> (seeded data)</p>
+            <div className="demo-buttons">
+              {DEMOS.map(({ email, label, who, icon: Icon }) => (
+                <button type="button" key={email} className="demo-btn" disabled={busy} onClick={() => submit(null, email)}>
+                  <Icon size={18} /> <span><strong>Demo {label}</strong><small>{who}</small></span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </form>
     </div>
   )

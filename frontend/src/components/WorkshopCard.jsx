@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import { CalendarDays, Clock, MapPin, Star } from 'lucide-react'
 import CategoryArt from './CategoryArt.jsx'
+import { tiltHandlers } from '../lib/motion.js'
 import { formatDate, formatDuration, formatPrice, seatLabel } from '../lib/format.js'
 
 export default function WorkshopCard({ workshop }) {
   const label = seatLabel(workshop)
   const tone = workshop.seats_left === 0 ? 'red' : workshop.seats_left <= 2 ? 'amber' : 'green'
   return (
-    <article className="workshop-card" data-testid="workshop-card">
+    <article className="workshop-card tilt" data-testid="workshop-card" {...tiltHandlers(6)}>
       <CategoryArt category={workshop.category} height={130}>
         <span className={`seat-pill ${tone}`}>{label}</span>
       </CategoryArt>

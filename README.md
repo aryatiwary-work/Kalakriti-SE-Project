@@ -122,6 +122,17 @@ The frontend and backend communicate through REST APIs rather than directly depe
 | Host dashboard | Totals, per-workshop registrations, waitlist counts and attendee list | US-14, US-17, US-22 |
 | Reviews | Attendees rate a session after it runs; average rating shown on cards and detail | US-19, US-20 |
 | Admin | Approve or revoke host verification | US-24 |
+| Landing site | 3D animated hero (Three.js), live platform stats, categories, how it works, reviews, FAQ, About page, 404 page, footer, mobile menu | - |
+
+### Website design
+
+The frontend uses a dark theme with terracotta accents. The landing page opens on an interactive Three.js scene (a clay pot on a potter's wheel among floating craft shapes) that follows the pointer, pauses when off-screen and stays still for users who prefer reduced motion. Sections reveal on scroll, cards tilt in 3D on hover, and lists show skeleton loaders while data loads. The login page has one-click **Demo Learner** and **Demo Host** buttons that work once the demo data is seeded. Open Graph tags and `public/og-image.png` give a rich preview when the site link is shared on LinkedIn.
+
+After pulling this change into an existing checkout, rebuild with fresh anonymous volumes so the frontend container picks up the new `three` dependency:
+
+```bash
+docker compose up --build -V
+```
 
 ### Running the tests
 
