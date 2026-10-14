@@ -83,16 +83,18 @@ jobs:
     needs: [backend-tests, frontend]
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # Install before the stack starts: the frontend container bind-mounts
+      # ./frontend and creates root-owned files there, which npm ci cannot remove.
+      - name: Install Playwright
+        working-directory: frontend
+        run: npm ci && npx playwright install --with-deps chromium
       - name: Build and start the full stack
         run: docker compose up --build -d
       - name: Wait for the API
         run: timeout 90 bash -c 'until curl -sf localhost:8000/health; do sleep 2; done'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Install Playwright
-        working-directory: frontend
-        run: npm ci && npx playwright install --with-deps chromium
       - name: Run end-to-end tests
         working-directory: frontend
         run: npx playwright test
