@@ -11,7 +11,9 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  useEffect(() => setOpen(false), [location.pathname])
+  useEffect(() => {
+    setOpen(false)
+  }, [location.pathname])
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
     onScroll()
