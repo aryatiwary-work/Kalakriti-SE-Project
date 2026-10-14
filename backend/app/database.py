@@ -7,7 +7,11 @@ DATABASE_URL = os.getenv(
     "postgresql://kalakriti_user:kalakriti_pass@db:5432/kalakriti_db",
 )
 
-engine = create_engine(DATABASE_URL)
+# SQLite (used only by the fast local test run) needs this flag so the
+# TestClient's worker thread can share the connection.
+connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+
+engine = create_engine(DATABASE_URL, connect_args=connect_args, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 

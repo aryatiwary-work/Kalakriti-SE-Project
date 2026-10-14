@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   db:
     image: postgres:16-alpine
@@ -13,6 +11,11 @@ services:
       - "5432:5432"
     volumes:
       - kalakriti_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kalakriti_user -d kalakriti_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
 
   backend:
     build: ./backend
@@ -25,7 +28,8 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - ./backend:/app
 

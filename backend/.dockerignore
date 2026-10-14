@@ -3,3 +3,7 @@ __pycache__
 .env
 venv/
 .git
+.mutmut-cache
+.pytest_cache
+test_kalakriti.db
+html/

@@ -2,11 +2,11 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# System deps for psycopg2
-RUN apt-get update && apt-get install -y --no-install-recommends gcc libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
-COPY requirements.txt .
+# psycopg2-binary ships its own libpq, so no compiler or apt packages are needed.
+COPY requirements.txt requirements-dev.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
