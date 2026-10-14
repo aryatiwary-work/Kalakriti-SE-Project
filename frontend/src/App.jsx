@@ -25,7 +25,9 @@ function RequireRole({ role, children }) {
 function ScrollChrome() {
   const { pathname } = useLocation()
   const [progress, setProgress] = useState(0)
-  useEffect(() => window.scrollTo(0, 0), [pathname])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
   useEffect(() => {
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight
