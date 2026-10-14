@@ -126,9 +126,9 @@ The frontend and backend communicate through REST APIs rather than directly depe
 
 ### Website design
 
-The frontend uses a dark theme with terracotta accents. The landing page opens on an interactive Three.js scene (a clay pot on a potter's wheel among floating craft shapes) that follows the pointer, pauses when off-screen and stays still for users who prefer reduced motion. Sections reveal on scroll, cards tilt in 3D on hover, and lists show skeleton loaders while data loads. The login page has one-click **Demo Learner** and **Demo Host** buttons that work once the demo data is seeded. Open Graph tags and `public/og-image.png` give a rich preview when the site link is shared on LinkedIn.
+The website has a dark theme with orange (clay) colours. The home page shows a 3D clay pot turning on a potter's wheel, made with Three.js. It moves a little with the mouse, stops when you scroll past it, and stays still if your system is set to reduce motion. Sections fade in as you scroll, and the login page has **Demo Learner** and **Demo Host** buttons (they work after the demo data is loaded). The site also has a preview image (`public/og-image.png`) for when the link is shared, for example on LinkedIn.
 
-After pulling this change into an existing checkout, rebuild with fresh anonymous volumes so the frontend container picks up the new `three` dependency:
+If you already had the project running, rebuild it like this so the new `three` package gets installed:
 
 ```bash
 docker compose up --build -V
@@ -180,7 +180,7 @@ Kalakriti-SE-Project/
 │   │   ├── serializers.py          # ORM -> response mapping
 │   │   ├── seed.py                 # Demo data
 │   │   ├── services/booking.py     # Pure seat, waitlist and rating rules
-│   │   └── routers/                # auth, workshops, registrations, reviews, hosts
+│   │   └── routers/                # auth, workshops, registrations, reviews, hosts, platform
 │   ├── tests/
 │   │   ├── unit/                   # Booking rules and security (mutation-tested)
 │   │   ├── integration/            # API + database tests
@@ -190,9 +190,9 @@ Kalakriti-SE-Project/
 │   └── Dockerfile
 ├── frontend/
 │   ├── src/
-│   │   ├── pages/                  # Home, Search, WorkshopDetail, Login, BookingConfirmation,
-│   │   │                           # MyBookings, HostDashboard, WorkshopForm
-│   │   ├── components/             # Navbar, WorkshopCard, SeatMeter, StarRating, CategoryArt
+│   │   ├── pages/                  # Home, About, Search, WorkshopDetail, Login, BookingConfirmation,
+│   │   │                           # MyBookings, HostDashboard, WorkshopForm, NotFound
+│   │   ├── components/             # Navbar, Footer, Hero3D, WorkshopCard, SeatMeter, StarRating, ...
 │   │   ├── lib/                    # API client, auth context, formatters
 │   │   └── __tests__/              # Vitest + Testing Library
 │   ├── e2e/                        # Playwright end-to-end tests
