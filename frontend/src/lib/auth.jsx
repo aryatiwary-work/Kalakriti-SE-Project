@@ -3,11 +3,22 @@ import api from './api.js'
 
 const AuthContext = createContext(null)
 
+// Login data saved by an older version of the site may be in a different
+// shape. If it is not a user we can use, forget it instead of crashing.
+function loadSavedUser() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('kalakriti_user'))
+    if (saved && typeof saved.name === 'string' && typeof saved.role === 'string') return saved
+  } catch {
+    // not valid JSON
+  }
+  localStorage.removeItem('kalakriti_user')
+  localStorage.removeItem('kalakriti_token')
+  return null
+}
+
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('kalakriti_user')
-    return saved ? JSON.parse(saved) : null
-  })
+  const [user, setUser] = useState(loadSavedUser)
 
   useEffect(() => {
     if (!localStorage.getItem('kalakriti_token')) return
