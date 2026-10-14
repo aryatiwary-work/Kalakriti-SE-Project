@@ -161,6 +161,23 @@ class ReviewOut(BaseModel):
     created_at: datetime
 
 
+class RecentReview(BaseModel):
+    id: int
+    rating: int
+    comment: str
+    learner_name: str
+    workshop_id: int
+    workshop_title: str
+    category: str
+
+
+class PlatformStats(BaseModel):
+    upcoming_workshops: int
+    hosts: int
+    cities: int
+    seats_booked: int
+
+
 # ---------- Host dashboard ----------
 
 class DashboardWorkshop(BaseModel):

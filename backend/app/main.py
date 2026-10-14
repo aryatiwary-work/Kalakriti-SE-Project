@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from . import models
 from .database import engine
-from .routers import auth, hosts, registrations, reviews, workshops
+from .routers import auth, hosts, platform, registrations, reviews, workshops
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -30,6 +30,7 @@ app.include_router(workshops.router)
 app.include_router(registrations.router)
 app.include_router(reviews.router)
 app.include_router(hosts.router)
+app.include_router(platform.router)
 
 
 @app.get("/")
